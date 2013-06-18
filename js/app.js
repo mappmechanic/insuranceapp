@@ -14,13 +14,14 @@ alert("binding events");
 
 function onOnline()
 {
-  alert("event fired online");
  $("#statusLight").css({"background-color":"green"});
+ $("#statusTxt").html("ONLINE");
 }
 
 function onOffline()
 {
  $("#statusLight").css({"background-color":"red"});
+ $("#statusTxt").html("OFFLINE");
 }
 
 $(document).on( "mobileinit", function() {
