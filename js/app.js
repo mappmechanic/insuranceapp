@@ -2,11 +2,28 @@
 
 document.addEventListener("deviceready",onDeviceReady,false);
 
+
+// Initializing Parse Backend
+
+Parse.initialize("vGMwigvggiUA5EHyPAT3jdkFZEuqzQSZOC2LMp2G", "9ERhaGJXC8SMzrR55DON6utEOXxdF3CvdoXqgaXi");
+
+// Defining the Objects to be Used for Data Synchronization with the Backend
+
+function Contact(fname,lname,num)
+{
+  this.FirstName = fname;
+  this.LastName = lname;
+  this.Number = num;
+  this.lastSyncDateTime = "";
+  this.lastUpdateDateTime = new Date();
+  alert(this.lastUpdateDateTime);
+}
+
 function onDeviceReady()
 {
   //Phonegap is ready
   console.log("Phonegap is ready");
-alert("binding events");
+  updateConnectionStatus();
   //Binding Network Events on Phonegap DeviceReady
    document.addEventListener("online", onOnline, false);
    document.addEventListener("offline", onOffline, false);
@@ -22,6 +39,24 @@ function onOffline()
 {
  $("#statusLight").css({"background-color":"red"});
  $("#statusTxt").html("OFFLINE");
+}
+
+function updateConnectionStatus() {
+    var networkState = navigator.network.connection.type;
+
+    var states = {};
+    states[Connection.UNKNOWN]  = 'Unknown connection';
+    states[Connection.ETHERNET] = 'Ethernet connection';
+    states[Connection.WIFI]     = 'WiFi connection';
+    states[Connection.CELL_2G]  = 'Cell 2G connection';
+    states[Connection.CELL_3G]  = 'Cell 3G connection';
+    states[Connection.CELL_4G]  = 'Cell 4G connection';
+    states[Connection.NONE]     = 'No network connection';
+
+    if(networkState == Connection.NONE)
+       onOffline();
+    else
+       onOnline();
 }
 
 $(document).on( "mobileinit", function() {
@@ -45,17 +80,22 @@ function addContact_BtnClick()
   else
   {
   	appendContactRow({"id":"2334sds23","FirstName":fname,"LastName":lname,"Number":number});
+    var myContact = new Contact();
   }
 
 }
 
 function appendContactRow(obj)
 {
-	console.log(obj);
 	$("#contactList").prepend("<li id='"+obj.id+"'><h2 class='name'>"+obj.FirstName+" "+obj.LastName+"</h2><p class='number'>+91-"+obj.Number+"</p>	<div class='callIco'></div></li>")
 	.listview("refresh");
   $("#addContact").popup("close");
 	myScroll.refresh();
+}
+
+function displayContacts(contactList)
+{
+  
 }
 
 
