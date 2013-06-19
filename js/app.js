@@ -2,11 +2,6 @@
 
 document.addEventListener("deviceready",onDeviceReady,false);
 
-
-// Initializing Parse Backend
-
-Parse.initialize("vGMwigvggiUA5EHyPAT3jdkFZEuqzQSZOC2LMp2G", "9ERhaGJXC8SMzrR55DON6utEOXxdF3CvdoXqgaXi");
-
 // Global Application Object
 var app = {
   db:null,
@@ -70,6 +65,8 @@ function onOnline()
 {
  $("#statusLight").css({"background-color":"green"});
  $("#statusTxt").html("ONLINE");
+// Initializing Parse Backend
+Parse.initialize("vGMwigvggiUA5EHyPAT3jdkFZEuqzQSZOC2LMp2G", "9ERhaGJXC8SMzrR55DON6utEOXxdF3CvdoXqgaXi");
  startSync();
 }
 
