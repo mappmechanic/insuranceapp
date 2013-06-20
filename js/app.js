@@ -7,6 +7,7 @@ var app = {
   db:null,
   storage:null,
   settings:null,
+  syncInProgress:false,
   // Function to Initialize the App Settings
 initializeApp:function() {
   app.storage = window.localStorage;
@@ -209,7 +210,10 @@ function displaySelectedContacts(tx,results)
 
 function startSync()
 {
-  downloadNewObjects();
+  if(!app.syncInProgress) {
+    app.syncInProgress = true;
+    downloadNewObjects();
+  }
 }
 
 function updateSettings()
@@ -247,6 +251,7 @@ function downloadNewObjects()
               appendMultipleContacts(contactList);
               myScroll.refresh();
               $("#footerTxt").html(results.length+"&nbsp;New Contacts Added");
+              app.syncInProgress = false;
           }else
             {
               $("#footerTxt").html("Sync Done : No New Contacts Available");
