@@ -8,6 +8,7 @@ var app = {
   storage:null,
   settings:null,
   syncInProgress:false,
+  networkStatus:'offline',
   // Function to Initialize the App Settings
 initializeApp:function() {
   app.storage = window.localStorage;
@@ -71,6 +72,7 @@ function onOnline()
 {
  $("#statusLight").css({"background-color":"green"});
  $("#statusTxt").html("ONLINE");
+ app.networkStatus = 'online';
 // Initializing Parse Backend
 Parse.initialize("vGMwigvggiUA5EHyPAT3jdkFZEuqzQSZOC2LMp2G", "9ERhaGJXC8SMzrR55DON6utEOXxdF3CvdoXqgaXi");
  startSync();
@@ -80,6 +82,7 @@ function onOffline()
 {
  $("#statusLight").css({"background-color":"red"});
  $("#statusTxt").html("OFFLINE");
+ app.networkStatus = 'offline';
 }
 
 function updateConnectionStatus() {
@@ -210,7 +213,7 @@ function displaySelectedContacts(tx,results)
 
 function startSync()
 {
-  if(!app.syncInProgress) {
+  if(!app.syncInProgress && app.networkStatus == 'online') {
     app.syncInProgress = true;
     downloadNewObjects();
   }
