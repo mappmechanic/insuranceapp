@@ -48,6 +48,8 @@
 	font-size:14px;
 }
 
+
+
 #contactList li .name
 {
 	font-size:17px;
@@ -71,6 +73,16 @@
  background:url('../images/call.png');
  height: 30px;
  width:30px;
+}
+
+#contactList li .syncStatus
+{
+	float: right;
+	position: relative;
+	top:-30px;
+	font-size: 10px;
+	right:25px;
+	background-color: yellow;
 }
 
 #contactList li a 

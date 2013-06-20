@@ -59,6 +59,11 @@ function onDeviceReady()
   if (app.settings.lastSyncDate != "null")
     app.db.transaction(getContactsFromDb,errorCB); // Fetching the Offline Objects Stored in the Database
 
+  $(document).on("click",".callIco",function(event){
+   var number = $(event.target).parent().children('p').html();
+   window.location.href = "tel:"+number;
+  });
+
 }
 
 function onOnline()
@@ -117,7 +122,8 @@ function addContact_BtnClick()
   	alert("First Name & Number are required to add a Contact.");
   else
   {
-  	appendContactRow({"id":"2334sds23","FirstName":fname,"LastName":lname,"Number":number});
+  	var contactList = Array({"backendId":"2334sds23","FirstName":fname,"LastName":lname,"Number":number});
+    appendContactRow(contactList[0]);
     var myContact = new Contact();
   }
 
@@ -125,7 +131,7 @@ function addContact_BtnClick()
 
 function appendContactRow(obj)
 {
-	$("#contactList").prepend("<li id='"+obj.id+"'><h2 class='name'>"+obj.FirstName+" "+obj.LastName+"</h2><p class='number'>+91-"+obj.Number+"</p>	<div class='callIco'></div></li>")
+	$("#contactList").prepend("<li id='"+obj.id+"'><h2 class='name'>"+obj.FirstName+" "+obj.LastName+"</h2><p class='number'>+91-"+obj.Number+"</p><div class='callIco'></div><div class='syncStatus'>PENDING SYNC</div></li>")
 	.listview("refresh");
   $("#addContact").popup("close");
 	myScroll.refresh();
@@ -149,7 +155,7 @@ function populateDB(tx) {
 }
 
 function errorCB(err) {
-  console.log(err);
+  //console.log(err);
     alert("Error processing SQL: "+err.message);
 }
 
@@ -159,7 +165,7 @@ function successCB() {
 
 function successContactListEntry()
 {
-  app.settings.lastSyncDate = new Date();
+  //app.settings.lastSyncDate = new Date();
   updateSettings();
 }
 
@@ -182,7 +188,6 @@ function displaySelectedContacts(tx,results)
   var contactList = Array();
   for(var i=0;i<results.rows.length;i++)
   {
-    console.log(results.rows.item(i).id);
     var contactObj = new Contact();
     contactObj.id = results.rows.item(i).backendId;
     contactObj.FirstName = results.rows.item(i).fname;
@@ -218,7 +223,7 @@ function downloadNewObjects()
     //var category = Parse.Object.extend("Category");
   var query = new Parse.Query(contact);
   if (app.settings.lastSyncDate != "null")
-    query.greaterThanOrEqualTo("createdAt", app.settings.lastSyncDate);
+    query.greaterThan("createdAt", new Date(app.settings.lastSyncDate));
     query.ascending("createdAt");
     $("#footerTxt").html("<img src='images/loader.gif'> &nbsp;&nbsp;&nbsp;SYNC IN PROGRESS")
   query.find({
@@ -236,6 +241,7 @@ function downloadNewObjects()
                 contactObj.Number = results[i].get("number");
                 contactObj.lastSyncDateTime = results[i].createdAt;
                 contactList.push(contactObj);
+                app.settings.lastSyncDate = results[i].createdAt;
               }
               app.db.transaction(function(tx) { insertIntoContacts(tx,contactList)},errorCB,successContactListEntry);
               appendMultipleContacts(contactList);
@@ -248,7 +254,10 @@ function downloadNewObjects()
             }
     },
     error: function(error) {
-      alert("Error: " + error.code + " " + error.message);
+      if(error.code == -1)
+        $("#footerTxt").html("Internet Not Available");
+      else
+        alert("Error: " + error.code + " " + error.message);
     }
   });
 }
