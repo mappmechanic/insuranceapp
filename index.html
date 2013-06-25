@@ -15,65 +15,313 @@
  	<script type="text/javascript" src="js/iscroll.js"></script>
  </head>
  <body>
- 	<div data-role="page" id="home" data-add-back-btn="true">
- 		<div data-role="header">
- 			<a href="#addContact" data-rel="popup" data-position-to="origin" data-role="button" data-icon="plus" data-theme="b">ADD</a>
- 			<h1><img src="images/contacts.png" style="position:relative;top:-5px;right:5px;"><span style="position:relative;top:-13px;">ContactPro</span></h1>
- 			<a href="#"><div id="statusLight"></div><span id="statusTxt">OFFLINE</span></a>
+ 	<div data-role="page" id="login" data-add-back-btn="true">
+ 		<div data-role="header" style='height:35px'>
+ 			<img src='images/reliancelogo.jpg' style="float:left">
+ 			<span style="position:relative;top:7px">InsurancePro</span>
  		</div>
  		<div data-role="content">
- 			
- 			<div id="wrapper">
-				<div id="scroller">
-					<div id="pullDown">
-						<span class="pullDownIcon"></span><span class="pullDownLabel">Pull down to Sync...</span>
-					</div>
-					<ul id="contactList" data-role="listview">
-						<!--<li id="1">
-							<h2 class="name">Rahat Khanna</h2>
-							<p class="number">+91-9717824218</p>
-							<div class="callIco"></div>
-						</li>
-						<li id="2">
-							<h2 class="name">Manit Singh Kalsi</h2>
-							<p class="number">+91-9958748535</p>
-							<div class="callIco"></div>
-						</li>
-						<li id="3">
-							<h2 class="name">Nishant Adlakha</h2>
-							<p class="number">+91-8377884052</p>
-							<div class="callIco"></div>
-						</li>
-						<li id="4">
-							<h2 class="name">Sudipti Gupta</h2>
-							<p class="number">+91-7838052400</p>
-							<div class="callIco"></div>
-						</li>
-						<li id="5">
-							<h2 class="name">Nipun Rawat</h2>
-							<p class="number">+91-9654083636</p>
-							<div class="callIco"></div>
-						</li>-->
-					</ul>
+ 			<br><br><div data-role="collapsible" data-theme="b" data-content-theme="d" data-collapsed="false">
+			    <h4>Sign In</h4>
+			    <div data-role="fieldcontain">
+			    <label for="textinput-fc">Username:</label>
+			    <input type="text" name="textinput-fc" id="username" placeholder="Email Address / Username" value="">
 				</div>
+			<div data-role="fieldcontain">
+			    <label for="textinput-fc">Password:</label>
+			    <input type="password" name="textinput-fc" id="password" placeholder="Password" value="">
 			</div>
-				    <div data-role="popup" id="addContact" data-theme="d" data-dismissible="false" class="ui-corner-all">
-				    	<a href="#" data-rel="back" data-icon="delete" style="float:right" data-iconpos="notext" data-theme="b" data-inline="true" data-role="button" data-text="false">Close</a>
-				            <div style="padding:10px 20px;">
-				              <h3>New Contact</h3>
-				              <label for="fname" class="ui-hidden-accessible">First Name:</label>
-				              <input type="text" name="fname" id="fname" placeholder="First Name" data-theme="a">
-				              <label for="lname" class="ui-hidden-accessible">Last Name:</label>
-				              <input type="text" name="lname" id="lname" placeholder="Last Name" data-theme="a">
-				              <label for="number" class="ui-hidden-accessible">Number</label>
-				              <input type="number" name="number" id="number" placeholder="Number" data-theme="a">
-				              <button type="button" data-theme="b" data-icon="check" onClick="addContact_BtnClick()">Submit</button>
-				            </div>
-				    </div>
+ 			<a href="#" data-role="button" onClick="login()" data-transition="none">Click to Login</a>
+			</div>
+		
  		</div>
  		<div data-role="footer" data-position="fixed">
- 			<h1 id="footerTxt">&copy; Genpact</h1>
+ 			<h1 id="footerTxt">&copy; Genpact Mobile CoE</h1>
  		</div>
  	</div>
+
+ 	<div data-role="page" id="agenthome" data-add-back-btn="true">
+ 		<div data-role="header" style='height:35px;background:#fff;text-align:center'>
+ 			<span style="position:relative;top:7px;float:right;color:#0063b4">InsurancePro</span>
+ 			<img src='images/reliancelogo.jpg' style="height:20px;float:right;position:relative;top:7px;">
+ 		</div>
+ 		<div data-role="content">
+ 			<h3> Choose from below: </h3>
+ 			<a href="#a_clientsearch" data-theme="b" data-role="button" >Client Search</a>
+ 			<a href="#a_newaccount" data-theme="b" data-role="button" >Create New Insurance Account</a>
+ 			<div style="text-align:center">
+ 				<img src='images/main.jpg'>
+ 			</div>
+ 		</div>
+ 		<div data-role="footer" data-position="fixed">
+ 			<h1 id="footerTxt">&copy; Genpact Mobile CoE</h1>
+ 		</div>
+ 	</div>
+
+ 	<div data-role="page" id="a_clientsearch" data-add-back-btn="true">
+ 		<div data-role="header" style='height:35px;background:#fff;text-align:center'>
+ 			<span style="position:relative;top:7px;float:right;color:#0063b4">InsurancePro</span>
+ 			<img src='images/reliancelogo.jpg' style="height:20px;float:right;position:relative;top:7px;">
+ 		</div>
+ 		<div data-role="content">
+ 			<h3> Search from Client List: </h3>
+ 			<div data-role="fieldcontain">
+			    <label for="textinput-fc">First Name:</label>
+			    <input type="text" name="textinput-fc" id="fname" placeholder="First Name" value="">
+			</div>
+
+			<div data-role="fieldcontain">
+			    <label for="textinput-fc">Last Name:</label>
+			    <input type="text" name="textinput-fc" id="lname" placeholder="Last Name" value="">
+			</div>
+
+			<div data-role="fieldcontain">
+			    <label for="textinput-fc">Policy ID:</label>
+			    <input type="text" name="textinput-fc" id="policyid" placeholder="Policy ID" value="">
+			</div>
+			<a href="#" onClick="goToPage('Searching','a_searchresults')" data-theme="b" data-role="button" >Search</a>
+ 		</div>
+ 		<div data-role="footer" data-position="fixed">
+ 			<h1 id="footerTxt">&copy; Genpact Mobile CoE</h1>
+ 		</div>
+ 	</div>
+
+
+
+
+ 	<div data-role="page" id="a_newaccount" data-add-back-btn="true">
+ 		<div data-role="header" style='height:35px;background:#fff;text-align:center'>
+ 			<span style="position:relative;top:7px;float:right;color:#0063b4">InsurancePro</span>
+ 			<img src='images/reliancelogo.jpg' style="height:20px;float:right;position:relative;top:7px;">
+ 		</div>
+ 		<div data-role="content">
+ 			<h3> Create New Insurance Account: </h3>
+ 			<div data-role="fieldcontain">
+			    <label for="textinput-fc">Client Name:</label>
+			    <input type="text" name="textinput-fc" id="cname" placeholder="First Name" value="">
+			</div>
+
+			<div data-role="fieldcontain">
+			    <label for="textinput-fc">Premium Amount:</label>
+			    <input type="text" name="textinput-fc" id="amt" placeholder="Amount" value="">
+			</div>
+
+			<div data-role="fieldcontain">
+			    <label for="textinput-fc">Duration (in Years):</label>
+			    <input type="number" name="textinput-fc" id="duration" placeholder="Duration" value="">
+			</div>
+
+			<div data-role="fieldcontain">
+			    <label for="textinput-fc">Select Insurance Plan:</label>
+			   	<select id="selectedPlan">
+                    <option>Money Multiplier Plan</option>
+	 				<option>Family Health Plan</option>
+	 				<option>Retirement Plan</option>
+	 				<option>Goal Linked Plan</option>
+	 				<option>Automobile Insurance</option>
+			    </select>
+			</div>
+			<a href="#" onClick="createAccount()" data-theme="b" data-role="button" >Create</a>
+ 		</div>
+ 		<div data-role="footer" data-position="fixed">
+ 			<h1 id="footerTxt">&copy; Genpact Mobile CoE</h1>
+ 		</div>
+ 	</div>
+
+ 	<div data-role="page" id="a_newaccount1" data-add-back-btn="true">
+ 		<div data-role="header" style='height:35px;background:#fff;text-align:center'>
+ 			<span style="position:relative;top:7px;float:right;color:#0063b4">InsurancePro</span>
+ 			<img src='images/reliancelogo.jpg' style="height:20px;float:right;position:relative;top:7px;">
+ 		</div>
+ 		<div data-role="content">
+ 			<h3> New Policy Created with ID-2456675: </h3>
+ 			<div data-role="fieldcontain">
+			    Client Name:
+			    <b><p id="d_cname"></p></b></label>
+			</div>
+
+			<div data-role="fieldcontain">
+			    Premium Amount:
+			   <b> <p id="d_amt"></p></b></label>
+			</div>
+
+			<div data-role="fieldcontain">
+			    Duration (in Years):
+			   <b><p id="d_duration"></p></b></label>
+			</div>
+
+			<div data-role="fieldcontain">
+			   Select Insurance Plan:
+			   <b><p id="d_pname"></p></b></label>
+			</div>
+ 		</div>
+ 		<div data-role="footer" data-position="fixed">
+ 			<h1 id="footerTxt">&copy; Genpact Mobile CoE</h1>
+ 		</div>
+ 	</div>
+
+
+ 	<div data-role="page" id="a_searchresults" data-add-back-btn="true">
+ 		<div data-role="header" style='height:35px;background:#fff;text-align:center'>
+ 			<span style="position:relative;top:7px;float:right;color:#0063b4">InsurancePro</span>
+ 			<img src='images/reliancelogo.jpg' style="height:20px;float:right;position:relative;top:7px;">
+ 		</div>
+ 		<div data-role="content">
+ 			<h3> Search Results:</h3>
+ 			<h4> 4 matching records found</h4>
+ 			<ul data-role="listview">
+ 				<li><a href="#">Ramesh Pawar</a></li>
+ 				<li><a href="#" onClick="goToPage('Fetching Client','a_clientdetails')">Ramki Duggal</a></li>
+ 				<li><a href="#">Ram Vilas Paswan</a></li>
+ 				<li><a href="#">Ramu Khanna</a></li>
+ 			</ul>
+ 			<br><br>
+ 			<div style="">Note: Click on the Name to view Details</div>
+ 		</div>
+ 		<div data-role="footer" data-position="fixed">
+ 			<h1 id="footerTxt">&copy; Genpact Mobile CoE</h1>
+ 		</div>
+ 	</div>
+
+ 	<div data-role="page" id="a_clientdetails" data-add-back-btn="true">
+ 		<div data-role="header" style='height:35px;background:#fff;text-align:center'>
+ 			<span style="position:relative;top:7px;float:right;color:#0063b4">InsurancePro</span>
+ 			<img src='images/reliancelogo.jpg' style="height:20px;float:right;position:relative;top:7px;">
+ 		</div>
+ 		<div data-role="content">
+ 			<h4> Client Name:</h4>
+ 			<h3> Ramki Duggal</h3>
+ 			<ul data-role="listview">
+ 				<li><a href="#">Money Multiplier Plan : ID-2444355</a></li>
+ 				<li><a href="#"  onClick="goToPage('Policy Details','a_policydetails')">Family Health Plan : ID-356777</a></li>
+ 				<li><a href="#">Retirement Plan: ID-353454</a></li>
+ 				<li><a href="#">Goal Linked Plan: ID-643455</a></li>
+ 				<li><a href="#">Automobile Insurance: ID-723553</a></li>
+ 			</ul>
+ 			<br><br>
+ 			<div style="">Note: Click on the Policy Item to see details.</div>
+ 		</div>
+ 		<div data-role="footer" data-position="fixed">
+ 			<h1 id="footerTxt">&copy; Genpact Mobile CoE</h1>
+ 		</div>
+ 	</div>
+
+ 	<div data-role="page" id="a_policydetails" data-add-back-btn="true">
+ 		<div data-role="header" style='height:35px;background:#fff;text-align:center'>
+ 			<span style="position:relative;top:7px;float:right;color:#0063b4">InsurancePro</span>
+ 			<img src='images/reliancelogo.jpg' style="height:20px;float:right;position:relative;top:7px;">
+ 		</div>
+ 		<div data-role="content">
+ 			<table>
+ 				<tr>
+ 					<td>Policy ID</td>
+ 					<td>356777</td>
+ 				</tr>
+ 				<tr>
+ 					<td>Policy Plan</td>
+ 					<td>Family Health Plan</td>
+ 				</tr>
+ 				<tr>
+ 					<td>Total Covered Value</td>
+ 					<td>Rs. 1 Crores</td>
+ 				</tr>
+ 				<tr>
+ 					<td>Family Members Covered</td>
+ 					<td>3</td>
+ 				</tr>
+ 			</table>
+ 			<br>
+ 			<a href="#" onClick="goToPage('Premium Dates','a_premdt')" data-theme="b" data-role="button">View Premium Dates</a>
+ 			<a href="#" onClick="goToPage('Payment History','a_payhist')" data-theme="b" data-role="button">View Payment History</a>
+ 		</div>
+ 		<div data-role="footer" data-position="fixed">
+ 			<h1 id="footerTxt">&copy; Genpact Mobile CoE</h1>
+ 		</div>
+ 	</div>
+
+ 	<div data-role="page" id="a_payhist" data-add-back-btn="true">
+ 		<div data-role="header" style='height:35px;background:#fff;text-align:center'>
+ 			<span style="position:relative;top:7px;float:right;color:#0063b4">InsurancePro</span>
+ 			<img src='images/reliancelogo.jpg' style="height:20px;float:right;position:relative;top:7px;">
+ 		</div>
+ 		<div data-role="content">
+ 			<h4> Payment History :</h4>
+ 			<ul data-role="listview">
+ 				<li>12th September 2012 - Rs. 12,3455 </li>
+ 				<li>14th October 2012 - Rs. 12,3655 </li>
+ 				<li>13th November 2012 - Rs. 12,3456 </li>
+ 				<li>15th December 2012 - Rs. 12,3555</li>
+ 				<li>12th January 2013 - Rs. 12,3455 </li>
+ 				<li>14th February 2013 - Rs. 12,3655 </li>
+ 				<li>13th March 2013 - Rs. 12,3456 </li>
+ 				<li>15th April 2013 - Rs. 12,3555</li>
+ 				<li>13th May 2013 - Rs. 12,3456 </li>
+ 				<li>15th June 2013 - Rs. 12,3555</li>
+ 			</ul>
+ 		</div>
+ 		<div data-role="footer" data-position="fixed">
+ 			<h1 id="footerTxt">&copy; Genpact Mobile CoE</h1>
+ 		</div>
+ 	</div>
+
+ 	<div data-role="page" id="a_premdt" data-add-back-btn="true">
+ 		<div data-role="header" style='height:35px;background:#fff;text-align:center'>
+ 			<span style="position:relative;top:7px;float:right;color:#0063b4">InsurancePro</span>
+ 			<img src='images/reliancelogo.jpg' style="height:20px;float:right;position:relative;top:7px;">
+ 		</div>
+ 		<div data-role="content">
+ 			<h4> Premium Dates :</h4>
+ 			<ul data-role="listview">
+ 				<li><a href="#">15th July 2013 - Rs. 12,3455 </a></li>
+ 				<li><a href="#">13th August 2013 - Rs. 12,3655 </a></li>
+ 				<li><a href="#">14th September 2013 - Rs. 12,3456 </a></li>
+ 				<li><a href="#">15th October 2013 - Rs. 12,3555 </a></li>
+ 			</ul>
+ 		</div>
+ 		<div data-role="footer" data-position="fixed">
+ 			<h1 id="footerTxt">&copy; Genpact Mobile CoE</h1>
+ 		</div>
+ 	</div>
+
+
+ 	<div data-role="page" id="clienthome" data-add-back-btn="true">
+ 		<div data-role="header" style='height:35px;background:#fff;text-align:center'>
+ 			<span style="position:relative;top:7px;float:right;color:#0063b4">InsurancePro</span>
+ 			<img src='images/reliancelogo.jpg' style="height:20px;float:right;position:relative;top:7px;">
+ 		</div>
+ 		<div data-role="content">
+ 			<h4>Welcome, Ramki Duggal</h4>
+ 			<h3> Choose from below: </h3>
+ 			<a href="#"  onClick="goToPage('Fetching Plans','u_plandetails')" data-theme="b" data-role="button" >View New Insurance Plans</a>
+ 			<a href="#" onClick="goToPage('Fetching Policies','a_clientdetails')" data-theme="b" data-role="button" >View Your Insurance Policies</a>
+ 			<div style="text-align:center">
+ 				<img src='images/main.jpg'>
+ 			</div>
+ 		</div>
+ 		<div data-role="footer" data-position="fixed">
+ 			<h1 id="footerTxt">&copy; Genpact Mobile CoE</h1>
+ 		</div>
+ 	</div>
+
+   <div data-role="page" id="u_plandetails" data-add-back-btn="true">
+ 		<div data-role="header" style='height:35px;background:#fff;text-align:center'>
+ 			<span style="position:relative;top:7px;float:right;color:#0063b4">InsurancePro</span>
+ 			<img src='images/reliancelogo.jpg' style="height:20px;float:right;position:relative;top:7px;">
+ 		</div>
+ 		<div data-role="content">
+ 			<h4>New Insurance Plans</h4>
+ 			<ul data-role="listview">
+ 				<li><a href="#">Money Multiplier Plan</a></li>
+ 				<li><a href="#">Family Health Plan</a></li>
+ 				<li><a href="#">Retirement Plan</a></li>
+ 				<li><a href="#">Goal Linked Plan</a></li>
+ 				<li><a href="#">Automobile Insurance</a></li>
+ 			</ul>
+ 		</div>
+ 		<div data-role="footer" data-position="fixed">
+ 			<h1 id="footerTxt">&copy; Genpact Mobile CoE</h1>
+ 		</div>
+ 	</div>
+
  </body>
 </html>
