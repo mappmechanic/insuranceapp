@@ -26,6 +26,16 @@ initializeApp:function() {
 }
 };
 
+$(document).on( "mobileinit", function() {
+  console.log("Initialize jQuery Mobile Phonegap Enhancement Configurations")
+    // Make your jQuery Mobile framework configuration changes here!
+    $.mobile.allowCrossDomainPages = true;
+    $.support.cors = true;
+    $.mobile.buttonMarkup.hoverDelay = 0;
+    $.mobile.pushStateEnabled = false;
+    $.mobile.defaultPageTransition = "none";
+});
+
 function onDeviceReady()
 {
 
