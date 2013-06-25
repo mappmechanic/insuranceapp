@@ -7,14 +7,14 @@
 
     <!-- versionCode is optional and Android only -->
 
-    <name>ContactsPro</name>
+    <name>InsurancePro</name>
 
     <description>
-        Contacts Management App for a Group of People to have a list of Synchronized Contacts, also available offline.
+        Insurance App
     </description>
 
-    <author href="https://appsonmob.com" email="rahat@appsonmob.com">
-        AppMechanic
+    <author href="https://genpact.com" email="rahat.khanna@genpact.com">
+        Genpact Mobile CoE
     </author>
 
     <preference name="phonegap-version" value="2.7.0" />
